@@ -6,5 +6,10 @@ module RiotSetBuilder
       class InvalidMap < StandardError; end
       class InvalidMode < StandardError; end
     end
+
+    module Item
+      class NoID < StandardError; end
+      class InvalidCount < StandardError ; end
+    end
   end
 end
