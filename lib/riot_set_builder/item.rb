@@ -1,5 +1,4 @@
 module RiotSetBuilder
-
   class Item
     attr_accessor :id, :count
 
@@ -20,7 +19,5 @@ module RiotSetBuilder
       raise "Item requires an ID" unless id
       raise "Item's count must be a number >= 0"  unless count >= 0
     end
-
   end
-
 end
