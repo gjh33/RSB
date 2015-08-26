@@ -1,4 +1,5 @@
 require 'riot_set_builder/errors'
+require 'riot_set_builder/item'
 
 module RiotSetBuilder
   class Build
