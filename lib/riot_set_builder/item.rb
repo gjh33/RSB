@@ -1,5 +1,9 @@
+require 'riot_set_builder/errors'
+
 module RiotSetBuilder
   class Item
+    include Error::Item
+
     attr_accessor :id, :count
 
     DEFAULT_OPTIONS = {
@@ -16,8 +20,8 @@ module RiotSetBuilder
     end
 
     def verify_attributes
-      raise "Item requires an ID" unless id
-      raise "Item's count must be a number >= 0"  unless count >= 0
+      raise NoID, "Item requires an ID" unless id
+      raise InvalidCount, "Item's count must be a number >= 0"  unless count >= 0
     end
   end
 end
