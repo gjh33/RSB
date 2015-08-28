@@ -11,6 +11,7 @@ RSpec.describe RiotSetBuilder::Build do
         let(:test_options) do
           {
             title: "PB - Dyrus",
+            champion: :Lulu,
             type: "custom",
             map: "TT",
             mode: "CLASSIC",
