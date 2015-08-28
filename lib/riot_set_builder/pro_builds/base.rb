@@ -1,4 +1,5 @@
 require 'mechanize'
+require 'uri'
 
 module RiotSetBuilder
   module ProBuilds
@@ -13,6 +14,11 @@ module RiotSetBuilder
 
       def page_for(path)
         @agent.get(BASE_URL + path)
+      end
+
+      def path_of(url)
+        uri = URI::parse(url)
+        uri.path
       end
     end
   end
