@@ -36,34 +36,34 @@ RSpec.describe RiotSetBuilder::Build do
 
     context "when invalid options are passed" do
 
-      shared_examples "an invalid build" do
+      shared_examples "a method that raises an error" do |error_class|
         it "raises an error" do
-          expect{ subject }.to raise_error
+          expect{ subject }.to raise_error error_class
         end
       end
 
       context "when no title is passed" do
         let(:test_options) { {} }
 
-        it_behaves_like "an invalid build"
+        it_behaves_like "a method that raises an error", described_class::NoTitle
       end
 
       context "when an invalid type is passed" do
-        let(:test_options) { { name: "PB - Dyrus", type: "RitoPlz" } }
+        let(:test_options) { { title: "PB - Dyrus", type: "RitoPlz" } }
 
-        it_behaves_like "an invalid build"
+        it_behaves_like "a method that raises an error", described_class::InvalidType
       end
 
       context "when an invalid map is passed" do
-        let(:test_options) { { name: "PB - Dyrus", map: "KK" } }
+        let(:test_options) { { title: "PB - Dyrus", map: "KK" } }
 
-        it_behaves_like "an invalid build"
+        it_behaves_like "a method that raises an error", described_class::InvalidMap
       end
 
       context "when an invalid mode is passed" do
-        let(:test_options) { { name: "PB - Dyrus", mode: "Sandbox" } }
+        let(:test_options) { { title: "PB - Dyrus", mode: "Sandbox" } }
 
-        it_behaves_like "an invalid build"
+        it_behaves_like "a method that raises an error", described_class::InvalidMode
       end
     end
   end

@@ -1,5 +1,10 @@
+require 'riot_set_builder/errors'
+require 'riot_set_builder/item'
+
 module RiotSetBuilder
   class Build
+    include Error::Build
+
     attr_accessor :title, :type, :map, :mode, :priority, :sortrank, :blocks
 
     DEFAULT_OPTIONS = {
@@ -34,10 +39,10 @@ module RiotSetBuilder
     private
 
     def verify_attributes
-      raise "Title required for build" unless title
-      raise "Invalid type, valid types are #{ VALID_OPTIONS.types }" unless VALID_OPTIONS[:types].include?(type)
-      raise "Invalid map, valid maps are #{ VALID_OPTIONS.maps }" unless VALID_OPTIONS[:maps].include?(map)
-      raise "invalid mode, valid modes are #{ VALID_OPTIONS.modes }" unless VALID_OPTIONS[:modes].include?(mode)
+      raise NoTitle, "Title required for build" unless title
+      raise InvalidType, "Invalid type, valid types are #{ VALID_OPTIONS[:types] }" unless VALID_OPTIONS[:types].include?(type)
+      raise InvalidMap, "Invalid map, valid maps are #{ VALID_OPTIONS[:maps] }" unless VALID_OPTIONS[:maps].include?(map)
+      raise InvalidMode, "invalid mode, valid modes are #{ VALID_OPTIONS[:modes] }" unless VALID_OPTIONS[:modes].include?(mode)
     end
   end
 end
