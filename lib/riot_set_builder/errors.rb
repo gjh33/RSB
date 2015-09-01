@@ -11,5 +11,10 @@ module RiotSetBuilder
       class NoID < StandardError; end
       class InvalidCount < StandardError ; end
     end
+
+    module Block
+      class InvalidMinLevel < StandardError; end
+      class InvalidMaxLevel < StandardError; end
+    end
   end
 end
