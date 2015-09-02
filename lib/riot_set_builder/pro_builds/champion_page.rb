@@ -1,4 +1,5 @@
 require 'riot_set_builder/pro_builds/base'
+require 'riot_set_builder/pro_builds/build_page'
 require 'riot_set_builder/build'
 
 module RiotSetBuilder
@@ -31,11 +32,10 @@ module RiotSetBuilder
 
       def build_for(element)
         player = element.search('.player').first.text
-        #path = path_of(element[:href])
+        path = path_of(element[:href])
         name = "PB - #{ player }"
-        #build_page = BuildPage.new(path)
-        #RiotSetBuilder::Build.new(title: name, mode: "CLASSIC", blocks: build_page.blocks)
-        RiotSetBuilder::Build.new(title: name, mode: "CLASSIC", champion: champion)
+        build_page = BuildPage.new(path)
+        RiotSetBuilder::Build.new(title: name, champion: champion, mode: "CLASSIC", blocks: build_page.blocks)
       end
     end
   end

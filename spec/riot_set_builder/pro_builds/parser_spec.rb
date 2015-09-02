@@ -11,4 +11,13 @@ RSpec.describe RiotSetBuilder::ProBuilds::Parser do
       expect(subject).to include :Ahri, :Katarina, :Malzahar, :ChoGath
     end
   end
+
+  describe "#recent_builds_for" do
+    subject { parser.recent_builds_for(:Aatrox) }
+
+    it "returns a list of recent builds" do
+      expect(subject).to all be_a RiotSetBuilder::Build
+      expect(subject).not_to be_empty
+    end
+  end
 end

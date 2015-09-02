@@ -1,4 +1,5 @@
 require 'riot_set_builder/pro_builds/base'
+require 'riot_set_builder/pro_builds/champion_page'
 
 module RiotSetBuilder
   module ProBuilds
@@ -14,8 +15,7 @@ module RiotSetBuilder
       end
 
       def recent_builds_for(champion)
-        #ChampionParser.new(champion)
-        #ChampionParser.recent_builds
+        ChampionPage.new(champion).recent_builds
       end
 
       private
