@@ -20,4 +20,16 @@ RSpec.describe RiotSetBuilder::ProBuilds::Parser do
       expect(subject).not_to be_empty
     end
   end
+
+  describe "#all_recent_builds" do
+    subject { parser.all_recent_builds }
+
+    before do
+      allow(parser).to receive(:recent_builds_for).and_return(["builds"])
+    end
+
+    it "gets builds for each champion" do
+      expect(subject.count).to eq parser.champions.count
+    end
+  end
 end

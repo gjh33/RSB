@@ -18,6 +18,15 @@ module RiotSetBuilder
         ChampionPage.new(champion).recent_builds
       end
 
+      def all_recent_builds
+        champions.inject({}) do |hash, champion|
+          puts "working on #{champion}..."
+          hash[champion] = recent_builds_for(champion)
+          puts "finished."
+          hash
+        end
+      end
+
       private
 
       def paramaterize(name)
