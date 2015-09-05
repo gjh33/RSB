@@ -5,7 +5,7 @@ module RiotSetBuilder
   class Build
     include Error::Build
 
-    attr_accessor :title, :type, :map, :mode, :priority, :sortrank, :blocks
+    attr_accessor :title, :champion, :type, :map, :mode, :priority, :sortrank, :blocks
 
     DEFAULT_OPTIONS = {
       type: "global",
@@ -26,6 +26,7 @@ module RiotSetBuilder
       options = DEFAULT_OPTIONS.merge(options)
 
       @title = options[:title]
+      @champion = options[:champion]
       @type = options[:type]
       @map = options[:map]
       @mode = options[:mode]

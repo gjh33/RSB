@@ -1,22 +1,36 @@
+require 'riot_set_builder/pro_builds/base'
+require 'riot_set_builder/pro_builds/champion_page'
+
 module RiotSetBuilder
   module ProBuilds
-    class Parser
-
-      BASE_URL = 'http://www.probuilds.net'
-
-      def self.recent_final_builds(champion)
-        #request page for champion
-        #parse body for list items
-        #generate list of urls from list items
-        #for each url, parse build
-        #return all builds
+    class Parser < Base
+      def champions
+        page = page_for('/champions')
+        champion_names = page.search('a.block .left h3')
+        champion_names.inject([]) do |champions, name|
+          champion = paramaterize(name.text).to_sym
+          champions << champion
+          champions
+        end.uniq
       end
 
-      def self.parse_build(url)
-        #request build page
-        #parse body for final items ul
-        #parse body for buy order ul
-        #create build
+      def recent_builds_for(champion)
+        ChampionPage.new(champion).recent_builds
+      end
+
+      def all_recent_builds
+        champions.inject({}) do |hash, champion|
+          puts "working on #{champion}..."
+          hash[champion] = recent_builds_for(champion)
+          puts "finished."
+          hash
+        end
+      end
+
+      private
+
+      def paramaterize(name)
+        name.delete "' ."
       end
     end
   end
